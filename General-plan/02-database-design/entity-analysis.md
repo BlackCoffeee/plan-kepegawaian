@@ -14,39 +14,39 @@ Entitas utama untuk menyimpan data pegawai/karyawan dengan informasi lengkap.
 
 #### Attributes
 
-| Attribute           | Type      | Constraints  | Description                         |
-| ------------------- | --------- | ------------ | ----------------------------------- |
-| `id`                | string    | PK, Not Null | Primary key pegawai                 |
-| `id_sp`             | string    | UK, Not Null | ID dari sistem Sister               |
-| `nik`               | string    | UK, Not Null | Nomor Induk Kependudukan (16 digit) |
-| `nidn`              | string    | Nullable     | Nomor Induk Dosen Nasional          |
-| `nama`              | string    | Not Null     | Nama lengkap pegawai                |
-| `tempatLahir`       | string    | Nullable     | Tempat lahir                        |
-| `tanggalLahir`      | date      | Nullable     | Tanggal lahir                       |
-| `jenisKelamin`      | enum      | Nullable     | L/P                                 |
-| `gelarDepan`        | string    | Nullable     | Gelar depan                         |
-| `gelarBelakang`     | string    | Nullable     | Gelar belakang                      |
-| `bidangIlmu_id`     | bigint    | FK, Nullable | Referensi bidang ilmu               |
-| `pendidikan_id`     | bigint    | FK, Nullable | Referensi pendidikan                |
-| `ektp`              | string    | Nullable     | Nomor E-KTP                         |
-| `nokk`              | string    | Nullable     | Nomor Kartu Keluarga                |
-| `alamatKtp`         | text      | Nullable     | Alamat sesuai KTP                   |
-| `alamat`            | text      | Nullable     | Alamat domisili                     |
-| `agama_id`          | bigint    | FK, Nullable | Referensi agama                     |
-| `status_id`         | bigint    | FK, Nullable | Referensi status pegawai            |
-| `noWa`              | string    | Nullable     | Nomor WhatsApp                      |
-| `email`             | string    | Nullable     | Email pegawai                       |
-| `ikatanKerja_id`    | bigint    | FK, Nullable | Referensi ikatan kerja              |
-| `aktivitas_id`      | bigint    | FK, Nullable | Referensi aktivitas                 |
-| `foto`              | string    | Nullable     | Path foto pegawai                   |
-| `tanggalMasukKerja` | date      | Nullable     | Tanggal masuk kerja                 |
-| `peran`             | string    | Nullable     | Peran pegawai                       |
-| `tugasUtama`        | text      | Nullable     | Tugas utama pegawai                 |
-| `serdos`            | string    | Nullable     | Status sertifikasi dosen            |
-| `jafung`            | bigint    | FK, Nullable | Referensi jabatan fungsional        |
-| `created_at`        | timestamp | Not Null     | Timestamp pembuatan                 |
-| `updated_at`        | timestamp | Not Null     | Timestamp update                    |
-| `deleted_at`        | timestamp | Nullable     | Timestamp soft delete               |
+| Attribute                | Type      | Constraints  | Description                         |
+| ------------------------ | --------- | ------------ | ----------------------------------- |
+| `id`                     | string    | PK, Not Null | Primary key pegawai                 |
+| `id_sp`                  | string    | UK, Not Null | ID dari sistem Sister               |
+| `nik`                    | string    | UK, Not Null | Nomor Induk Kependudukan (16 digit) |
+| `nidn`                   | string    | Nullable     | Nomor Induk Dosen Nasional          |
+| `full_name`              | string    | Not Null     | Nama lengkap pegawai                |
+| `birth_place`            | string    | Nullable     | Tempat lahir                        |
+| `birth_date`             | date      | Nullable     | Tanggal lahir                       |
+| `gender`                 | enum      | Nullable     | L/P                                 |
+| `title_prefix`           | string    | Nullable     | Gelar depan                         |
+| `title_suffix`           | string    | Nullable     | Gelar belakang                      |
+| `field_of_study_id`      | bigint    | FK, Nullable | Referensi bidang ilmu               |
+| `education_id`           | bigint    | FK, Nullable | Referensi pendidikan                |
+| `ektp`                   | string    | Nullable     | Nomor E-KTP                         |
+| `family_card_no`         | string    | Nullable     | Nomor Kartu Keluarga                |
+| `ktp_address`            | text      | Nullable     | Alamat sesuai KTP                   |
+| `current_address`        | text      | Nullable     | Alamat domisili                     |
+| `religion_id`            | bigint    | FK, Nullable | Referensi agama                     |
+| `employment_status_id`   | bigint    | FK, Nullable | Referensi status pegawai            |
+| `phone_number`           | string    | Nullable     | Nomor telepon                       |
+| `email`                  | string    | Nullable     | Email pegawai                       |
+| `employment_type_id`     | bigint    | FK, Nullable | Referensi jenis ikatan kerja        |
+| `activity_id`            | bigint    | FK, Nullable | Referensi aktivitas                 |
+| `photo`                  | string    | Nullable     | Path foto pegawai                   |
+| `employment_date`        | date      | Nullable     | Tanggal masuk kerja                 |
+| `role`                   | string    | Nullable     | Peran pegawai                       |
+| `main_duties`            | text      | Nullable     | Tugas utama pegawai                 |
+| `lecturer_certification` | string    | Nullable     | Status sertifikasi dosen            |
+| `functional_position_id` | bigint    | FK, Nullable | Referensi jabatan fungsional        |
+| `created_at`             | timestamp | Not Null     | Timestamp pembuatan                 |
+| `updated_at`             | timestamp | Not Null     | Timestamp update                    |
+| `deleted_at`             | timestamp | Nullable     | Timestamp soft delete               |
 
 #### Business Rules
 
@@ -60,8 +60,8 @@ Entitas utama untuk menyimpan data pegawai/karyawan dengan informasi lengkap.
 
 - Primary key: `id`
 - Unique indexes: `id_sp`, `nik`
-- Foreign key indexes: `bidangIlmu_id`, `pendidikan_id`, `agama_id`, `status_id`, `ikatanKerja_id`, `aktivitas_id`, `jafung`
-- Search indexes: `nama`, `email`
+- Foreign key indexes: `field_of_study_id`, `education_id`, `religion_id`, `employment_status_id`, `employment_type_id`, `activity_id`, `functional_position_id`
+- Search indexes: `full_name`, `email`
 
 ### 2. Users Entity
 
@@ -105,14 +105,14 @@ Entitas untuk departemen dalam struktur organisasi.
 
 #### Attributes
 
-| Attribute         | Type      | Constraints             | Description             |
-| ----------------- | --------- | ----------------------- | ----------------------- |
-| `id`              | bigint    | PK, Not Null            | Primary key departemen  |
-| `namaDepartement` | string    | Not Null                | Nama departemen         |
-| `isActive`        | boolean   | Not Null, Default: true | Status aktif departemen |
-| `created_at`      | timestamp | Not Null                | Timestamp pembuatan     |
-| `updated_at`      | timestamp | Not Null                | Timestamp update        |
-| `deleted_at`      | timestamp | Nullable                | Timestamp soft delete   |
+| Attribute    | Type      | Constraints             | Description             |
+| ------------ | --------- | ----------------------- | ----------------------- |
+| `id`         | bigint    | PK, Not Null            | Primary key departemen  |
+| `name`       | string    | Not Null                | Nama departemen         |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif departemen |
+| `created_at` | timestamp | Not Null                | Timestamp pembuatan     |
+| `updated_at` | timestamp | Not Null                | Timestamp update        |
+| `deleted_at` | timestamp | Nullable                | Timestamp soft delete   |
 
 #### Business Rules
 
@@ -123,8 +123,8 @@ Entitas untuk departemen dalam struktur organisasi.
 #### Indexes
 
 - Primary key: `id`
-- Search index: `namaDepartement`
-- Status index: `isActive`
+- Search index: `name`
+- Status index: `is_active`
 
 ### 4. Divisions Entity
 
@@ -134,15 +134,15 @@ Entitas untuk divisi yang berada di bawah departemen.
 
 #### Attributes
 
-| Attribute        | Type      | Constraints             | Description           |
-| ---------------- | --------- | ----------------------- | --------------------- |
-| `id`             | bigint    | PK, Not Null            | Primary key divisi    |
-| `departement_id` | bigint    | FK, Not Null            | Referensi departemen  |
-| `namaDivision`   | string    | Not Null                | Nama divisi           |
-| `isActive`       | boolean   | Not Null, Default: true | Status aktif divisi   |
-| `created_at`     | timestamp | Not Null                | Timestamp pembuatan   |
-| `updated_at`     | timestamp | Not Null                | Timestamp update      |
-| `deleted_at`     | timestamp | Nullable                | Timestamp soft delete |
+| Attribute       | Type      | Constraints             | Description           |
+| --------------- | --------- | ----------------------- | --------------------- |
+| `id`            | bigint    | PK, Not Null            | Primary key divisi    |
+| `department_id` | bigint    | FK, Not Null            | Referensi departemen  |
+| `name`          | string    | Not Null                | Nama divisi           |
+| `is_active`     | boolean   | Not Null, Default: true | Status aktif divisi   |
+| `created_at`    | timestamp | Not Null                | Timestamp pembuatan   |
+| `updated_at`    | timestamp | Not Null                | Timestamp update      |
+| `deleted_at`    | timestamp | Nullable                | Timestamp soft delete |
 
 #### Business Rules
 
@@ -153,9 +153,9 @@ Entitas untuk divisi yang berada di bawah departemen.
 #### Indexes
 
 - Primary key: `id`
-- Foreign key: `departement_id`
-- Composite unique: `departement_id`, `namaDivision`
-- Status index: `isActive`
+- Foreign key: `department_id`
+- Composite unique: `department_id`, `name`
+- Status index: `is_active`
 
 ### 5. Positions Entity
 
@@ -165,14 +165,14 @@ Entitas untuk posisi/jabatan dalam organisasi.
 
 #### Attributes
 
-| Attribute      | Type      | Constraints             | Description           |
-| -------------- | --------- | ----------------------- | --------------------- |
-| `id`           | bigint    | PK, Not Null            | Primary key posisi    |
-| `namaPosition` | string    | Not Null                | Nama posisi/jabatan   |
-| `isActive`     | boolean   | Not Null, Default: true | Status aktif posisi   |
-| `created_at`   | timestamp | Not Null                | Timestamp pembuatan   |
-| `updated_at`   | timestamp | Not Null                | Timestamp update      |
-| `deleted_at`   | timestamp | Nullable                | Timestamp soft delete |
+| Attribute    | Type      | Constraints             | Description           |
+| ------------ | --------- | ----------------------- | --------------------- |
+| `id`         | bigint    | PK, Not Null            | Primary key posisi    |
+| `name`       | string    | Not Null                | Nama posisi/jabatan   |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif posisi   |
+| `created_at` | timestamp | Not Null                | Timestamp pembuatan   |
+| `updated_at` | timestamp | Not Null                | Timestamp update      |
+| `deleted_at` | timestamp | Nullable                | Timestamp soft delete |
 
 #### Business Rules
 
@@ -183,8 +183,8 @@ Entitas untuk posisi/jabatan dalam organisasi.
 #### Indexes
 
 - Primary key: `id`
-- Search index: `namaPosition`
-- Status index: `isActive`
+- Search index: `name`
+- Status index: `is_active`
 
 ### 6. Structural Periods Entity
 
@@ -194,15 +194,15 @@ Entitas untuk periode struktur organisasi.
 
 #### Attributes
 
-| Attribute     | Type      | Constraints             | Description           |
-| ------------- | --------- | ----------------------- | --------------------- |
-| `id`          | bigint    | PK, Not Null            | Primary key periode   |
-| `dariTahun`   | date      | Not Null                | Tanggal mulai periode |
-| `sampaiTahun` | date      | Not Null                | Tanggal akhir periode |
-| `isActive`    | boolean   | Not Null, Default: true | Status aktif periode  |
-| `created_at`  | timestamp | Not Null                | Timestamp pembuatan   |
-| `updated_at`  | timestamp | Not Null                | Timestamp update      |
-| `deleted_at`  | timestamp | Nullable                | Timestamp soft delete |
+| Attribute    | Type      | Constraints             | Description           |
+| ------------ | --------- | ----------------------- | --------------------- |
+| `id`         | bigint    | PK, Not Null            | Primary key periode   |
+| `start_date` | date      | Not Null                | Tanggal mulai periode |
+| `end_date`   | date      | Not Null                | Tanggal akhir periode |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif periode  |
+| `created_at` | timestamp | Not Null                | Timestamp pembuatan   |
+| `updated_at` | timestamp | Not Null                | Timestamp update      |
+| `deleted_at` | timestamp | Nullable                | Timestamp soft delete |
 
 #### Business Rules
 
@@ -213,8 +213,8 @@ Entitas untuk periode struktur organisasi.
 #### Indexes
 
 - Primary key: `id`
-- Date range index: `dariTahun`, `sampaiTahun`
-- Status index: `isActive`
+- Date range index: `start_date`, `end_date`
+- Status index: `is_active`
 
 ### 7. Structurals Entity
 
@@ -228,7 +228,7 @@ Entitas untuk menghubungkan pegawai dengan posisi dalam struktur organisasi.
 | ---------------------- | --------- | ------------ | -------------------------- |
 | `id`                   | string    | PK, Not Null | Primary key struktur       |
 | `structural_period_id` | bigint    | FK, Not Null | Referensi periode struktur |
-| `departement_id`       | bigint    | FK, Not Null | Referensi departemen       |
+| `department_id`        | bigint    | FK, Not Null | Referensi departemen       |
 | `division_id`          | bigint    | FK, Nullable | Referensi divisi           |
 | `position_id`          | bigint    | FK, Not Null | Referensi posisi           |
 | `employee_nik`         | string    | FK, Not Null | Referensi pegawai (NIK)    |
@@ -246,8 +246,8 @@ Entitas untuk menghubungkan pegawai dengan posisi dalam struktur organisasi.
 #### Indexes
 
 - Primary key: `id`
-- Foreign keys: `structural_period_id`, `departement_id`, `division_id`, `position_id`, `employee_nik`
-- Unique constraint: `structural_period_id`, `departement_id`, `division_id`, `position_id`
+- Foreign keys: `structural_period_id`, `department_id`, `division_id`, `position_id`, `employee_nik`
+- Unique constraint: `structural_period_id`, `department_id`, `division_id`, `position_id`
 - Employee-period index: `employee_nik`, `structural_period_id`
 
 ### 8. Sessions Entity
@@ -292,8 +292,8 @@ Entitas referensi untuk agama.
 | Attribute    | Type      | Constraints             | Description           |
 | ------------ | --------- | ----------------------- | --------------------- |
 | `id`         | bigint    | PK, Not Null            | Primary key agama     |
-| `nama`       | string    | Not Null                | Nama agama            |
-| `isActive`   | boolean   | Not Null, Default: true | Status aktif agama    |
+| `name`       | string    | Not Null                | Nama agama            |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif agama    |
 | `created_at` | timestamp | Not Null                | Timestamp pembuatan   |
 | `updated_at` | timestamp | Not Null                | Timestamp update      |
 | `deleted_at` | timestamp | Nullable                | Timestamp soft delete |
@@ -306,8 +306,8 @@ Entitas referensi untuk agama.
 #### Indexes
 
 - Primary key: `id`
-- Search index: `nama`
-- Status index: `isActive`
+- Search index: `name`
+- Status index: `is_active`
 
 ### 2. Educations Entity
 
@@ -320,9 +320,9 @@ Entitas referensi untuk tingkat pendidikan.
 | Attribute    | Type      | Constraints             | Description             |
 | ------------ | --------- | ----------------------- | ----------------------- |
 | `id`         | bigint    | PK, Not Null            | Primary key pendidikan  |
-| `tingkat`    | string    | Not Null                | Tingkat pendidikan      |
-| `nama`       | string    | Not Null                | Nama pendidikan         |
-| `isActive`   | boolean   | Not Null, Default: true | Status aktif pendidikan |
+| `level`      | string    | Not Null                | Tingkat pendidikan      |
+| `name`       | string    | Not Null                | Nama pendidikan         |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif pendidikan |
 | `created_at` | timestamp | Not Null                | Timestamp pembuatan     |
 | `updated_at` | timestamp | Not Null                | Timestamp update        |
 | `deleted_at` | timestamp | Nullable                | Timestamp soft delete   |
@@ -335,8 +335,8 @@ Entitas referensi untuk tingkat pendidikan.
 #### Indexes
 
 - Primary key: `id`
-- Search index: `tingkat`, `nama`
-- Status index: `isActive`
+- Search index: `level`, `name`
+- Status index: `is_active`
 
 ### 3. Fields of Study Entity
 
@@ -349,9 +349,9 @@ Entitas referensi untuk bidang ilmu.
 | Attribute    | Type      | Constraints             | Description              |
 | ------------ | --------- | ----------------------- | ------------------------ |
 | `id`         | bigint    | PK, Not Null            | Primary key bidang ilmu  |
-| `nama`       | string    | Not Null                | Nama bidang ilmu         |
-| `kode`       | string    | UK, Not Null            | Kode bidang ilmu         |
-| `isActive`   | boolean   | Not Null, Default: true | Status aktif bidang ilmu |
+| `name`       | string    | Not Null                | Nama bidang ilmu         |
+| `code`       | string    | UK, Not Null            | Kode bidang ilmu         |
+| `is_active`  | boolean   | Not Null, Default: true | Status aktif bidang ilmu |
 | `created_at` | timestamp | Not Null                | Timestamp pembuatan      |
 | `updated_at` | timestamp | Not Null                | Timestamp update         |
 | `deleted_at` | timestamp | Nullable                | Timestamp soft delete    |
@@ -364,9 +364,9 @@ Entitas referensi untuk bidang ilmu.
 #### Indexes
 
 - Primary key: `id`
-- Unique index: `kode`
-- Search index: `nama`
-- Status index: `isActive`
+- Unique index: `code`
+- Search index: `name`
+- Status index: `is_active`
 
 ### 4. Employment Status Entity
 
@@ -376,15 +376,15 @@ Entitas referensi untuk status pegawai.
 
 #### Attributes
 
-| Attribute    | Type      | Constraints             | Description           |
-| ------------ | --------- | ----------------------- | --------------------- |
-| `id`         | bigint    | PK, Not Null            | Primary key status    |
-| `nama`       | string    | Not Null                | Nama status pegawai   |
-| `deskripsi`  | text      | Nullable                | Deskripsi status      |
-| `isActive`   | boolean   | Not Null, Default: true | Status aktif          |
-| `created_at` | timestamp | Not Null                | Timestamp pembuatan   |
-| `updated_at` | timestamp | Not Null                | Timestamp update      |
-| `deleted_at` | timestamp | Nullable                | Timestamp soft delete |
+| Attribute     | Type      | Constraints             | Description           |
+| ------------- | --------- | ----------------------- | --------------------- |
+| `id`          | bigint    | PK, Not Null            | Primary key status    |
+| `name`        | string    | Not Null                | Nama status pegawai   |
+| `description` | text      | Nullable                | Deskripsi status      |
+| `is_active`   | boolean   | Not Null, Default: true | Status aktif          |
+| `created_at`  | timestamp | Not Null                | Timestamp pembuatan   |
+| `updated_at`  | timestamp | Not Null                | Timestamp update      |
+| `deleted_at`  | timestamp | Nullable                | Timestamp soft delete |
 
 #### Business Rules
 
@@ -394,8 +394,8 @@ Entitas referensi untuk status pegawai.
 #### Indexes
 
 - Primary key: `id`
-- Search index: `nama`
-- Status index: `isActive`
+- Search index: `name`
+- Status index: `is_active`
 
 ### 5. Employment Types Entity
 

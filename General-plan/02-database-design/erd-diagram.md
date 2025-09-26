@@ -28,30 +28,30 @@ erDiagram
         string id_sp UK
         string nik UK
         string nidn
-        string nama
-        string tempatLahir
-        date tanggalLahir
-        enum jenisKelamin
-        string gelarDepan
-        string gelarBelakang
-        bigint bidangIlmu_id
-        bigint pendidikan_id
+        string full_name
+        string birth_place
+        date birth_date
+        enum gender
+        string title_prefix
+        string title_suffix
+        bigint field_of_study_id
+        bigint education_id
         string ektp
-        string nokk
-        string alamatKtp
-        string alamat
-        bigint agama_id
-        bigint status_id
-        string noWa
+        string family_card_no
+        string ktp_address
+        string current_address
+        bigint religion_id
+        bigint employment_status_id
+        string phone_number
         string email
-        bigint ikatanKerja_id
-        bigint aktivitas_id
-        string foto
-        date tanggalMasukKerja
-        string peran
-        string tugasUtama
-        string serdos
-        string jafung
+        bigint employment_type_id
+        bigint activity_id
+        string photo
+        date employment_date
+        string role
+        string main_duties
+        string lecturer_certification
+        bigint functional_position_id
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -59,8 +59,8 @@ erDiagram
 
     DEPARTEMENTS {
         bigint id PK
-        string namaDepartement
-        boolean isActive
+        string name
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -68,9 +68,9 @@ erDiagram
 
     DIVISIONS {
         bigint id PK
-        bigint departement_id FK
-        string namaDivision
-        boolean isActive
+        bigint department_id FK
+        string name
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -78,8 +78,8 @@ erDiagram
 
     POSITIONS {
         bigint id PK
-        string namaPosition
-        boolean isActive
+        string name
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -87,9 +87,9 @@ erDiagram
 
     STRUCTURAL_PERIODS {
         bigint id PK
-        date dariTahun
-        date sampaiTahun
-        boolean isActive
+        date start_date
+        date end_date
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -98,7 +98,7 @@ erDiagram
     STRUCTURALS {
         string id PK
         bigint structural_period_id FK
-        bigint departement_id FK
+        bigint department_id FK
         bigint division_id FK
         bigint position_id FK
         string employee_nik FK
@@ -144,8 +144,8 @@ erDiagram
 
     RELIGIONS {
         bigint id PK
-        string nama
-        boolean isActive
+        string name
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -153,9 +153,9 @@ erDiagram
 
     EDUCATIONS {
         bigint id PK
-        string tingkat
-        string nama
-        boolean isActive
+        string level
+        string name
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -163,9 +163,9 @@ erDiagram
 
     FIELDS_OF_STUDY {
         bigint id PK
-        string nama
-        string kode
-        boolean isActive
+        string name
+        string code
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -173,9 +173,9 @@ erDiagram
 
     EMPLOYMENT_STATUS {
         bigint id PK
-        string nama
-        string deskripsi
-        boolean isActive
+        string name
+        string description
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -183,9 +183,9 @@ erDiagram
 
     EMPLOYMENT_TYPES {
         bigint id PK
-        string nama
-        string deskripsi
-        boolean isActive
+        string name
+        string description
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -193,9 +193,9 @@ erDiagram
 
     ACTIVITIES {
         bigint id PK
-        string nama
-        string deskripsi
-        boolean isActive
+        string name
+        string description
+        boolean is_active
         timestamp created_at
         timestamp updated_at
         timestamp deleted_at
@@ -295,7 +295,7 @@ erDiagram
 
 ### Foreign Keys
 
-- **DEPARTEMENTS.id**: Referenced by DIVISIONS.departement_id, STRUCTURALS.departement_id
+- **DEPARTEMENTS.id**: Referenced by DIVISIONS.department_id, STRUCTURALS.department_id
 - **DIVISIONS.id**: Referenced by STRUCTURALS.division_id
 - **POSITIONS.id**: Referenced by STRUCTURALS.position_id
 - **STRUCTURAL_PERIODS.id**: Referenced by STRUCTURALS.structural_period_id
@@ -307,8 +307,8 @@ erDiagram
 
 - **USERS**: username, phone
 - **EMPLOYEES**: id_sp, nik
-- **FIELDS_OF_STUDY**: kode
-- **STRUCTURALS**: structural_period_id + departement_id + division_id + position_id (composite unique)
+- **FIELDS_OF_STUDY**: code
+- **STRUCTURALS**: structural_period_id + department_id + division_id + position_id (composite unique)
 
 ## 🎯 Business Rules Visualization
 

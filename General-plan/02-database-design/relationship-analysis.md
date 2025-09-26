@@ -16,13 +16,13 @@ Dokumen ini berisi analisis relasi antar entitas untuk database sistem SIMPEG (S
 - **Participation**:
   - Departements: Partial (tidak semua departemen memiliki divisi)
   - Divisions: Total (setiap divisi harus memiliki parent departemen)
-- **Foreign Key**: `divisions.departement_id` → `departements.id`
+- **Foreign Key**: `divisions.department_id` → `departements.id`
 - **Business Rule**: Divisi tidak boleh dihapus jika masih memiliki posisi aktif
 
 ```sql
 ALTER TABLE divisions
-ADD CONSTRAINT fk_divisions_departement
-FOREIGN KEY (departement_id) REFERENCES departements(id)
+ADD CONSTRAINT fk_divisions_department
+FOREIGN KEY (department_id) REFERENCES departements(id)
 ON DELETE RESTRICT;
 ```
 
@@ -65,7 +65,7 @@ ON DELETE CASCADE;
 - **Participation**:
   - Departements: Partial
   - Structurals: Total
-- **Foreign Key**: `structurals.departement_id` → `departements.id`
+- **Foreign Key**: `structurals.department_id` → `departements.id`
 - **Business Rule**: Assignment departemen harus valid
 
 #### 2.3 Positions → Structurals
@@ -138,13 +138,13 @@ ON DELETE CASCADE;
 - **Participation**:
   - Religions: Partial
   - Employees: Partial (pegawai dapat tidak memiliki agama)
-- **Foreign Key**: `employees.agama_id` → `religions.id`
+- **Foreign Key**: `employees.religion_id` → `religions.id`
 - **Business Rule**: Agama tidak boleh dihapus jika masih digunakan
 
 ```sql
 ALTER TABLE employees
 ADD CONSTRAINT fk_employees_religion
-FOREIGN KEY (agama_id) REFERENCES religions(id)
+FOREIGN KEY (religion_id) REFERENCES religions(id)
 ON DELETE SET NULL;
 ```
 
@@ -156,7 +156,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Educations: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.pendidikan_id` → `educations.id`
+- **Foreign Key**: `employees.education_id` → `educations.id`
 - **Business Rule**: Pendidikan tidak boleh dihapus jika masih digunakan
 
 #### 4.3 Fields of Study → Employees
@@ -167,7 +167,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Fields of Study: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.bidangIlmu_id` → `fields_of_study.id`
+- **Foreign Key**: `employees.field_of_study_id` → `fields_of_study.id`
 - **Business Rule**: Bidang ilmu tidak boleh dihapus jika masih digunakan
 
 #### 4.4 Employment Status → Employees
@@ -178,7 +178,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Employment Status: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.status_id` → `employment_status.id`
+- **Foreign Key**: `employees.employment_status_id` → `employment_status.id`
 - **Business Rule**: Status tidak boleh dihapus jika masih digunakan
 
 #### 4.5 Employment Types → Employees
@@ -189,7 +189,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Employment Types: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.ikatanKerja_id` → `employment_types.id`
+- **Foreign Key**: `employees.employment_type_id` → `employment_types.id`
 - **Business Rule**: Jenis ikatan kerja tidak boleh dihapus jika masih digunakan
 
 #### 4.6 Activities → Employees
@@ -200,7 +200,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Activities: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.aktivitas_id` → `activities.id`
+- **Foreign Key**: `employees.activity_id` → `activities.id`
 - **Business Rule**: Aktivitas tidak boleh dihapus jika masih digunakan
 
 #### 4.7 Jabfungs → Employees
@@ -211,7 +211,7 @@ ON DELETE SET NULL;
 - **Participation**:
   - Jabfungs: Partial
   - Employees: Partial
-- **Foreign Key**: `employees.jafung` → `jabfungs.id`
+- **Foreign Key**: `employees.functional_position_id` → `jabfungs.id`
 - **Business Rule**: Jabatan fungsional tidak boleh dihapus jika masih digunakan
 
 ### 5. Authentication Relationships
