@@ -2,7 +2,9 @@
 
 ## 📋 Overview
 
-Direktori ini berisi dokumen perencanaan umum untuk proyek SIMPEG (Sistem Informasi Manajemen Pegawai) Universitas Islam Negeri Sultan Maulana Hasanuddin.
+Direktori ini berisi dokumen perencanaan yang telah diorganisir secara modular untuk proyek SIMPEG (Sistem Informasi Manajemen Pegawai) Universitas Islam Negeri Sultan Maulana Hasanuddin.
+
+**Struktur Baru**: Dokumen telah dipecah dan diorganisir berdasarkan aspek perencanaan untuk memudahkan navigasi dan maintenance.
 
 ## 📚 Struktur Planning Documents
 
